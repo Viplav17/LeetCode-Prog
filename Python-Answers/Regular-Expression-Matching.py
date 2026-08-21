@@ -1,4 +1,4 @@
-s = "aa"
+s = "ab"
 p = ".*"
 
 n_s = len(s)
