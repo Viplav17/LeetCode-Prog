@@ -1,24 +1,32 @@
-s = "+-12"
-s = s.strip()
-sign = 1
-solution = 0
-step = 0
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        s = s.strip()
+        sign = 1
+        solution = 0
+        step = 0
+        
+        for char in s:
+            if (char == "-" and step == 0):
+                sign = -1
+                step += 1
+                continue
+            elif char == "+" and step == 0:
+                step += 1
+                continue
+            elif char == "-" and step != 0:
+                break
+            
+            if char.isdigit():
+                solution = (solution * 10) + int(char)
+                step += 1
+                continue
+            else:
+                break
 
-for char in s:
-    if char == "-" and step == 0:
-        sign = -1
-        Signed = True
-        continue
-    elif char == "+" and step == 0:
-        continue
-    elif char == "-" and step != 1:
-        print(solution)
-        break
-    if char.isdigit():
-        solution = (solution * 10) + int(char)
-        step += 1
-        continue
-    else:
-        print(sign * solution)
+        solution *= sign
+        if solution < -2**31:
+            solution = -2**31
+        elif solution > (2**31) - 1:
+            solution = 2**31 - 1
 
-print(sign * solution)
+        return solution
