@@ -45,6 +45,12 @@ while num > 0:
     digit = num // change
     digit_value = digit * change
 
+    if digit == 4 or digit == 9:
+        solution += give_Roman_4(digit_value)
+    else:
+        solution += give_Roman(digit_value)
+
+    num = num % change
     change /= 10
 
 print(solution)
